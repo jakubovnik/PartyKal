@@ -2,4 +2,6 @@
 <resources>
     <string name="btn_start_game">Začít hru!</string>
     <string name="btn_add_card">Přidat kartu!</string>
+    <string name="tv_card_amount">"Karty: "</string>
+    <string name="btn_refresh_output">Obnovit</string>
 </resources>

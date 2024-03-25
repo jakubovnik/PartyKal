@@ -74,4 +74,8 @@ public class DBM extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         return db.rawQuery("SELECT * FROM "+ CARD_TABLE_NAME, null);
     }
+    public Cursor getSimilarCardTitle(String title){
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.rawQuery("SELECT * FROM "+ CARD_TABLE_NAME +" WHERE title LIKE '%"+ title + "%'", null);
+    }
 }
