@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="btn_start_game">Začít Hru!</string>
+    <string name="btn_start_game">Začít hru!</string>
+    <string name="btn_add_card">Přidat kartu!</string>
 </resources>
