@@ -20,7 +20,9 @@ public class DBM extends SQLiteOpenHelper {
                 CARD_TABLE_NAME + "(" +
                 "id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT," +
                 "title TEXT NOT NULL UNIQUE," +
-                "description TEXT)");
+                "description TEXT," +
+                "points INTEGER NOT NULL)"
+        );
     }
 
     @Override
@@ -33,6 +35,7 @@ public class DBM extends SQLiteOpenHelper {
         ContentValues contentValues = new ContentValues();
         contentValues.put("title", card.title);
         contentValues.put("description", card.description);
+        contentValues.put("points", card.points);
         long result = db.insert(CARD_TABLE_NAME, null, contentValues);
         if(result == -1){
             return Boolean.FALSE;
@@ -90,7 +93,13 @@ public class DBM extends SQLiteOpenHelper {
             }
             cursor.close();
         }
-
         return result;
+    }
+    public void clearAllCards(String password){
+        SQLiteDatabase db = this.getWritableDatabase();
+        if(password.equals("fuckMe")){
+            db.execSQL("DELETE FROM " + CARD_TABLE_NAME);
+        }
+        db.close();
     }
 }

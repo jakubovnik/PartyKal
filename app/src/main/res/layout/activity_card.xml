@@ -7,4 +7,42 @@
     android:layout_height="match_parent"
     tools:context=".CardActivity">
 
+  <TextView
+      android:id="@+id/tv_points"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="error"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent" />
+
+  <Button
+      android:id="@+id/btn_add_ten_points"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:onClick="addTenPoints"
+      android:text="add 10 points"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/tv_points" />
+
+  <androidx.constraintlayout.widget.ConstraintLayout
+      android:id="@+id/constraintLayout"
+      android:layout_width="189dp"
+      android:layout_height="200dp"
+      app:layout_constraintBottom_toTopOf="@+id/btn_add_ten_points"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/tv_points">
+      <TextView
+          android:id="@+id/tv_card_name"
+          android:layout_width="78dp"
+          android:layout_height="37dp"
+          android:text="error"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="parent" />
+
   </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

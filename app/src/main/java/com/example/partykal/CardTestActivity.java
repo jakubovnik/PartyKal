@@ -38,7 +38,7 @@ public class CardTestActivity extends AppCompatActivity {
         if(et_add_card.getText().toString().isEmpty()){
             return;
         }
-        Card card = new Card("","");
+        Card card = new Card("","", 0);
         card.title = et_add_card.getText().toString();
         card.description = "bruh";
         dbm.addCard(card);

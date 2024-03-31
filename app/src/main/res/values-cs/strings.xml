@@ -4,4 +4,5 @@
     <string name="btn_add_card">Přidat kartu!</string>
     <string name="tv_card_amount">"Karty: "</string>
     <string name="btn_refresh_output">Obnovit</string>
+    <string name="tv_points">"Body: "</string>
 </resources>

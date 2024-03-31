@@ -5,4 +5,5 @@
     <string name="btn_add_card">Add Card!</string>
     <string name="tv_card_amount">"Cards: "</string>
     <string name="btn_refresh_output">Refresh</string>
+    <string name="tv_points">Points:</string>
 </resources>
