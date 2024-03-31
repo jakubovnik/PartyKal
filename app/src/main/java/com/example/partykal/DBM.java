@@ -35,25 +35,9 @@ public class DBM extends SQLiteOpenHelper {
         contentValues.put("description", card.description);
         long result = db.insert(CARD_TABLE_NAME, null, contentValues);
         if(result == -1){
-            return false;
+            return Boolean.FALSE;
         }else{
-            return true;
-        }
-    }
-    public Boolean updateCard(Card card){
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put("description", card.description);
-        Cursor cursor = db.rawQuery("SELECT * FROM "+ CARD_TABLE_NAME +" WHERE title = ?", new String[]{card.title});
-        if(cursor.getCount()>0) {
-            long result = db.update(CARD_TABLE_NAME, contentValues, "title=?", new String[]{card.title});
-            if (result == -1) {
-                return false;
-            } else {
-                return true;
-            }
-        }else{
-            return false;
+            return Boolean.TRUE;
         }
     }
     public Boolean deleteCard(Card card){
@@ -74,8 +58,39 @@ public class DBM extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         return db.rawQuery("SELECT * FROM "+ CARD_TABLE_NAME, null);
     }
-    public Cursor getSimilarCardTitle(String title){
+    public String getSimilarCardTitle(String title){
         SQLiteDatabase db = this.getWritableDatabase();
-        return db.rawQuery("SELECT * FROM "+ CARD_TABLE_NAME +" WHERE title LIKE '%"+ title + "%'", null);
+        Cursor cursor = db.rawQuery("SELECT * FROM "+ CARD_TABLE_NAME +" WHERE title LIKE '%"+ title + "%';", null);
+        String result;
+        if(cursor != null){
+            if(cursor.moveToFirst()){
+                int i = cursor.getColumnIndex("title");
+                result = cursor.getString(i);
+            }else{
+                result = "";
+            }
+            cursor.close();
+        }else{
+            result = "";
+        }
+        return result;
+    }
+    public int getSimilarCardCount(String title){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM "+ CARD_TABLE_NAME +" WHERE title LIKE '%"+ title + "%';", null);
+        int result = 0;
+        if(cursor != null){
+            result = cursor.getCount();
+            if(result > 1){
+                cursor.moveToFirst();
+                int i = cursor.getColumnIndex("title");
+                if(cursor.getString(i).equals(title)){
+                    result = 1;
+                }
+            }
+            cursor.close();
+        }
+
+        return result;
     }
 }
