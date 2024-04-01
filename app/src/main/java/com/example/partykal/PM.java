@@ -6,9 +6,7 @@ import android.content.SharedPreferences;
 public class PM {
     private static final String PREF_NAME = "PartyKalPreferences";
     private static final String POINTS_KEY = "points";
-    private PM(){
-        throw new AssertionError("PointsManager class should not be instantiated");
-    }
+    private PM(){}
     private static SharedPreferences getSP(Context context){
         return context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
     }
