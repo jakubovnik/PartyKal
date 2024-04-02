@@ -31,15 +31,20 @@
       android:id="@+id/constraintLayout"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
+      android:background="@drawable/card_border_on"
+      android:padding="10dp"
+      android:onClick="changeCardBtn"
       app:layout_constraintBottom_toTopOf="@+id/btn_add_ten_points"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/tv_points">
+
       <TextView
           android:id="@+id/tv_card_name"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:text="error"
+          android:textSize="20sp"
           app:layout_constraintEnd_toEndOf="parent"
           app:layout_constraintStart_toStartOf="parent"
           app:layout_constraintTop_toTopOf="parent" />
@@ -49,6 +54,7 @@
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:text="error"
+          android:textSize="16sp"
           app:layout_constraintEnd_toEndOf="parent"
           app:layout_constraintStart_toStartOf="parent"
           app:layout_constraintTop_toBottomOf="@+id/tv_card_name" />
@@ -58,6 +64,7 @@
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:text="error"
+          android:textSize="20sp"
           app:layout_constraintEnd_toEndOf="parent"
           app:layout_constraintStart_toStartOf="parent"
           app:layout_constraintTop_toBottomOf="@+id/tv_card_description" />

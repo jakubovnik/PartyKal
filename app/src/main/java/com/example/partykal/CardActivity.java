@@ -11,6 +11,7 @@ public class CardActivity extends AppCompatActivity {
     TextView tv_card_name;
     TextView tv_card_description;
     TextView tv_card_points;
+    boolean card_finished;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,5 +38,8 @@ public class CardActivity extends AppCompatActivity {
         tv_card_name.setText(card.title);
         tv_card_description.setText(card.description);
         tv_card_points.setText(Integer.toString(card.points));
+    }
+    public void switchCardState(View view){
+
     }
 }
