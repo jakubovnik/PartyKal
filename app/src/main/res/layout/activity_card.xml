@@ -28,12 +28,12 @@
       app:layout_constraintTop_toBottomOf="@+id/tv_points" />
 
   <androidx.constraintlayout.widget.ConstraintLayout
-      android:id="@+id/constraintLayout"
+      android:id="@+id/cl_card"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:background="@drawable/card_border_on"
+      android:background="@drawable/card_border_off"
       android:padding="10dp"
-      android:onClick="changeCardBtn"
+      android:onClick="switchCardState"
       app:layout_constraintBottom_toTopOf="@+id/btn_add_ten_points"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
@@ -63,7 +63,7 @@
           android:id="@+id/tv_card_points"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:text="error"
+          android:text="0"
           android:textSize="20sp"
           app:layout_constraintEnd_toEndOf="parent"
           app:layout_constraintStart_toStartOf="parent"
