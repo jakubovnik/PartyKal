@@ -6,9 +6,11 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.util.Random;
+
 public class DBM extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "party_kal.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
     private static final String CARD_TABLE_NAME = "card";
 
     public DBM(Context context){
@@ -94,6 +96,33 @@ public class DBM extends SQLiteOpenHelper {
             cursor.close();
         }
         return result;
+    }
+    public Card getRandomCard(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(
+                "SELECT * FROM " +
+                CARD_TABLE_NAME,
+                null);
+        if(cursor != null){
+            if(cursor.getCount() > 0){
+                int randomInt = (int)(Math.random() * cursor.getCount());
+                cursor.moveToPosition(randomInt);
+                int title_index = cursor.getColumnIndex("title");
+                int desc_index = cursor.getColumnIndex("description");
+                int points_index = cursor.getColumnIndex("points");
+                String title_string = cursor.getString(title_index);
+                String desc_string = cursor.getString(desc_index);
+                int points_int = cursor.getInt(points_index);
+                cursor.close();
+                return new Card(
+                        title_string,
+                        desc_string,
+                        points_int
+                );
+            }
+            cursor.close();
+        }
+        return new Card("error","something in function DBM.getRandomCard()",0);
     }
     public void clearAllCards(String password){
         SQLiteDatabase db = this.getWritableDatabase();

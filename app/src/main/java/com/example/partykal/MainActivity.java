@@ -19,4 +19,8 @@ public class MainActivity extends AppCompatActivity {
         PM.resetPoints(this);
         startActivity(intent);
     }
+    public void cardTestBtn(View view){
+        Intent intent = new Intent(MainActivity.this, CardTestActivity.class);
+        startActivity(intent);
+    }
 }
