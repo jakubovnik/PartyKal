@@ -1,18 +1,15 @@
 package com.example.partykal;
 
 import android.content.Intent;
-import android.database.Cursor;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.gson.Gson;
-
-import java.util.ArrayList;
+import com.google.zxing.integration.android.IntentIntegrator;
 
 public class CardTestActivity extends AppCompatActivity {
     DBM dbm;
@@ -50,23 +47,56 @@ public class CardTestActivity extends AppCompatActivity {
         tv_entry_amount.setText(temp_string);
     }
     public void addCardBtn(View view){
-        if(et_add_card_name.getText().toString().isEmpty()){
+        if(
+                et_add_card_name.getText().toString().isEmpty() ||
+                et_add_card_description.getText().toString().isEmpty() ||
+                et_add_card_points.getText().toString().isEmpty()
+        ){
+            CharSequence text = getResources().getString(R.string.toast_edit_text_not_filled);
+            Toast toast = Toast.makeText(this, text, Toast.LENGTH_SHORT);
+            toast.show();
             return;
         }
         Card card = new Card("","", 0);
         card.title = et_add_card_name.getText().toString();
         card.description = et_add_card_description.getText().toString();
         card.points = Integer.parseInt(et_add_card_points.getText().toString());
+
+
+
+        if(dbm.getSimilarCardTitle(card.title).equals(card.title)){
+            CharSequence text = getResources().getString(R.string.toast_card_already_exists);
+            Toast toast = Toast.makeText(this, text, Toast.LENGTH_SHORT);
+            toast.show();
+            return;
+        }
         dbm.addCard(card);
         et_add_card_name.setText("");
         et_add_card_description.setText("");
         et_add_card_points.setText("");
+        refreshValues();
     }
-    public void importCardsBtn(View view){/*
-        Intent intent = new Intent(CardTestActivity.this, QRImportActivity.class);
-        startActivity(intent);*/
+    public void clearAllCardsBtn(View view){
+        dbm.clearAllCards(et_add_card_name.getText().toString());
+        if(dbm.getSimilarCardCount("") > 0){
+            CharSequence text = getResources().getString(R.string.toast_enter_passcode);
+            Toast toast = Toast.makeText(this, text, Toast.LENGTH_SHORT);
+            toast.show();
+            return;
+        }
+        et_add_card_name.setText("");
+        refreshValues();
+    }
+    public void importCardsBtn(View view){
+        //bruh wtf is going on with the qr scan library? why is everything deprecated?
     }
     public void exportCardsBtn(View view){
+        if(dbm.getSimilarCardCount("")<1){
+            CharSequence text = getResources().getString(R.string.toast_not_enough_cards);
+            Toast toast = Toast.makeText(this, text, Toast.LENGTH_SHORT);
+            toast.show();
+            return;
+        }
         Intent intent = new Intent(CardTestActivity.this, QRExportActivity.class);
         startActivity(intent);
     }

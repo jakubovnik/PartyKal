@@ -6,8 +6,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import java.util.Random;
-
 public class DBM extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "party_kal.db";
     private static final int DATABASE_VERSION = 2;
@@ -32,18 +30,13 @@ public class DBM extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + CARD_TABLE_NAME);
         onCreate(db);
     }
-    public Boolean addCard(Card card){
+    public void addCard(Card card){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("title", card.title);
         contentValues.put("description", card.description);
         contentValues.put("points", card.points);
-        long result = db.insert(CARD_TABLE_NAME, null, contentValues);
-        if(result == -1){
-            return Boolean.FALSE;
-        }else{
-            return Boolean.TRUE;
-        }
+        db.insert(CARD_TABLE_NAME, null, contentValues);
     }
     public Boolean deleteCard(Card card){
         SQLiteDatabase db = this.getWritableDatabase();
@@ -126,7 +119,7 @@ public class DBM extends SQLiteOpenHelper {
     }
     public void clearAllCards(String password){
         SQLiteDatabase db = this.getWritableDatabase();
-        if(password.equals("bruh")){
+        if(password.equals("confirm")){
             db.execSQL("DELETE FROM " + CARD_TABLE_NAME);
         }
         db.close();

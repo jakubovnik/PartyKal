@@ -1,11 +1,12 @@
 package com.example.partykal;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.database.Cursor;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.gson.Gson;
 import com.google.zxing.BarcodeFormat;
@@ -34,10 +35,13 @@ public class QRExportActivity extends AppCompatActivity {
         String card_title;
         String card_description;
         int card_points;
+        int title_index = card_cursor.getColumnIndex("title");
+        int description_index = card_cursor.getColumnIndex("description");
+        int points_index = card_cursor.getColumnIndex("points");
         while (true) {
-            card_title = card_cursor.getString(1);
-            card_description = card_cursor.getString(2);
-            card_points = card_cursor.getInt(3);
+            card_title = card_cursor.getString(title_index);
+            card_description = card_cursor.getString(description_index);
+            card_points = card_cursor.getInt(points_index);
             cards.add(new Card(card_title, card_description, card_points));
             if (!card_cursor.moveToNext()) {
                 break;
@@ -45,9 +49,17 @@ public class QRExportActivity extends AppCompatActivity {
         }
         Gson gson = new Gson();
         String json = gson.toJson(cards);
+        if(json.length() > 2950){
+            CharSequence text;
+            text = getResources().getString(R.string.toast_qr_exceeded);
+            text += " " + json.length() + "/" + 2953;
+            Toast toast = Toast.makeText(this, text, Toast.LENGTH_SHORT);
+            toast.show();
+            finish();
+        }
         QRCodeWriter qrCodeWriter = new QRCodeWriter();
         try {
-            BitMatrix bitMatrix = qrCodeWriter.encode(json, BarcodeFormat.QR_CODE, 512, 512);
+            BitMatrix bitMatrix = qrCodeWriter.encode(json, BarcodeFormat.QR_CODE, 1024, 1024);
             BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
             iv_qr_code.setImageBitmap(barcodeEncoder.createBitmap(bitMatrix));
         } catch (WriterException e) {

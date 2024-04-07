@@ -8,4 +8,12 @@
     <string name="btn_card_test">Správa karet</string>
     <string name="btn_import_cards">Importovat</string>
     <string name="btn_export_cards">Exportovat</string>
+    <string name="toast_card_already_exists">Karta se stejným jménem už existuje</string>
+    <string name="toast_not_enough_cards">V databázi nejsou žádné karty!</string>
+    <string name="btn_clear_all_cards">Vymazat všechny karty</string>
+    <string name="toast_enter_passcode">Zadej \"confirm\" do pole s názvem a zmáčkni znovu</string>
+    <string name="et_card_title">Název karty</string>
+    <string name="et_card_description">Popisek karty</string>
+    <string name="et_card_points">Body</string>
+    <string name="toast_edit_text_not_filled">Všechny pole musí být vyplněny</string>
 </resources>
