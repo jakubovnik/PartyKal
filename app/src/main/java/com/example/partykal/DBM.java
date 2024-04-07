@@ -126,7 +126,7 @@ public class DBM extends SQLiteOpenHelper {
     }
     public void clearAllCards(String password){
         SQLiteDatabase db = this.getWritableDatabase();
-        if(password.equals("fuckMe")){
+        if(password.equals("bruh")){
             db.execSQL("DELETE FROM " + CARD_TABLE_NAME);
         }
         db.close();

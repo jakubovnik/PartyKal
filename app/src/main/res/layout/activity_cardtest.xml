@@ -13,6 +13,7 @@
         android:ems="10"
         android:inputType="text"
         android:text=""
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -23,6 +24,7 @@
         android:ems="10"
         android:inputType="text"
         android:text=""
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_add_card_name" />
@@ -33,6 +35,7 @@
         android:ems="10"
         android:inputType="number"
         android:text=""
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_add_card_description" />
@@ -70,20 +73,40 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
         android:text="@string/btn_add_card"
-        android:onClick="addCard"
+        android:onClick="addCardBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_card_display_name" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btn_refresh_output"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="@string/btn_refresh_output"
-        android:onClick="refreshValues"
+        android:onClick="refreshValuesBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_add_card" />
+
+    <Button
+        android:id="@+id/btn_import_cards"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_import_cards"
+        android:onClick="importCardsBtn"
+        app:layout_constraintEnd_toStartOf="@+id/btn_refresh_output"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btn_refresh_output" />
+
+    <Button
+        android:id="@+id/btn_export_cards"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_export_cards"
+        android:onClick="exportCardsBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_refresh_output"
+        app:layout_constraintTop_toTopOf="@+id/btn_refresh_output" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

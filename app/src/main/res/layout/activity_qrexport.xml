@@ -4,29 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".QRExportActivity">
 
-    <Button
-        android:id="@+id/btn_start_game"
+    <ImageView
+        android:id="@+id/iv_qr_code"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="onStartBtn"
-        android:text="@string/btn_start_game"
-        android:textSize="20sp"
+        android:src="@drawable/card_border_off"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/btn_card_testActivity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="cardTestBtn"
-        android:text="@string/btn_card_test"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_start_game" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
