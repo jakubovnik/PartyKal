@@ -3,7 +3,6 @@ package com.example.partykal;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;

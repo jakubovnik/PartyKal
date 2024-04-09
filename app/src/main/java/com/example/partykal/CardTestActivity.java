@@ -89,6 +89,7 @@ public class CardTestActivity extends AppCompatActivity {
     }
     public void importCardsBtn(View view){
         //bruh wtf is going on with the qr scan library? why is everything deprecated?
+
     }
     public void exportCardsBtn(View view){
         if(dbm.getSimilarCardCount("")<1){
