@@ -14,12 +14,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void onStartBtn(View view){
+    public void onStartBtn(View view){// Zapne View s náhodnou kartou (a resetuje body)
         Intent intent = new Intent(MainActivity.this, CardActivity.class);
         PM.resetPoints(this);
         startActivity(intent);
     }
-    public void cardTestBtn(View view){
+    public void cardTestBtn(View view){// Zapne View pro upravování karet
         Intent intent = new Intent(MainActivity.this, CardTestActivity.class);
         startActivity(intent);
     }

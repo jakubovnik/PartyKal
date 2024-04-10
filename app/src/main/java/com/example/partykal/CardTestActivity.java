@@ -9,9 +9,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.zxing.integration.android.IntentIntegrator;
-
-public class CardTestActivity extends AppCompatActivity {
+public class CardTestActivity extends AppCompatActivity { // Místo pro editování karet
     DBM dbm;
     EditText et_add_card_name;
     EditText et_add_card_description;
@@ -33,10 +31,10 @@ public class CardTestActivity extends AppCompatActivity {
         tv_card_amount = findViewById(R.id.tv_card_amount);
         refreshValues();
     }
-    public void refreshValuesBtn(View view){
+    public void refreshValuesBtn(View view){ // Funkce pro tlačítko
         refreshValues();
     }
-    public void refreshValues(){
+    public void refreshValues(){ // Zobrazí celkový počet karet, počet karet podobných vyhledávání a název nejpodobnější karty
         String input = et_add_card_name.getText().toString();
         String temp_string;
         temp_string = "Similar card: " + dbm.getSimilarCardTitle(input);
@@ -46,7 +44,7 @@ public class CardTestActivity extends AppCompatActivity {
         temp_string = "Similar " + getResources().getString(R.string.tv_card_amount) + dbm.getSimilarCardCount(input);
         tv_entry_amount.setText(temp_string);
     }
-    public void addCardBtn(View view){
+    public void addCardBtn(View view){// Přidá kartu (pokud není vše vyplněno, nebo už existuje karta se stejným jménem, hodí toast error)
         if(
                 et_add_card_name.getText().toString().isEmpty() ||
                 et_add_card_description.getText().toString().isEmpty() ||
@@ -76,7 +74,7 @@ public class CardTestActivity extends AppCompatActivity {
         et_add_card_points.setText("");
         refreshValues();
     }
-    public void clearAllCardsBtn(View view){
+    public void clearAllCardsBtn(View view){//
         dbm.clearAllCards(et_add_card_name.getText().toString());
         if(dbm.getSimilarCardCount("") > 0){
             CharSequence text = getResources().getString(R.string.toast_enter_passcode);

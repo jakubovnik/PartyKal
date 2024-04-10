@@ -14,7 +14,7 @@
     <string name="btn_clear_all_cards">Clear All Cards</string>
     <string name="toast_enter_passcode">Enter \"confirm\" to the Card title area and press again</string>
     <string name="toast_qr_exceeded" translatable="false">Exceeded qr code json limit</string>
-    <string name="et_card_title">Card title</string>
+    <string name="et_card_title">Card title / Search</string>
     <string name="et_card_description">Card description</string>
     <string name="et_card_points">Points</string>
     <string name="toast_edit_text_not_filled">All text areas need to be filled</string>
