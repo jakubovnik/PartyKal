@@ -7,7 +7,16 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 
 public class CardTestActivity extends AppCompatActivity { // Místo pro editování karet
     DBM dbm;
@@ -87,7 +96,28 @@ public class CardTestActivity extends AppCompatActivity { // Místo pro editová
     }
     public void importCardsBtn(View view){
         //bruh wtf is going on with the qr scan library? why is everything deprecated?
-
+        IntentIntegrator intentIntegrator = new IntentIntegrator(CardTestActivity.this);
+        intentIntegrator.setOrientationLocked(true);
+        intentIntegrator.setPrompt("Scan a qr code");
+        intentIntegrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE);
+        intentIntegrator.initiateScan();
+    }
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) { // většina zkopírována ze stránky: https://easyonecoder.com/android/basic/QRCodeScanner
+        IntentResult intentResult = IntentIntegrator.parseActivityResult(requestCode,resultCode,data);
+        if(intentResult != null){
+            String json = intentResult.getContents();
+            if(json != null){
+                Gson gson = new Gson();
+                Type cardListType = new TypeToken<ArrayList<Card>>(){}.getType(); //řádek zkopírován z chatGPT
+                ArrayList<Card> cards = gson.fromJson(json, cardListType);
+                for(Card card : cards){
+                    dbm.addCard(card);
+                }
+            }
+        }else{
+            super.onActivityResult(requestCode, resultCode, data);
+        }
+        refreshValues();
     }
     public void exportCardsBtn(View view){
         if(dbm.getSimilarCardCount("")<1){

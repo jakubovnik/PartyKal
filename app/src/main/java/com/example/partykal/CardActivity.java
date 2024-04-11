@@ -1,18 +1,25 @@
 package com.example.partykal;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class CardActivity extends AppCompatActivity {
+    private Timer timer;
+    private int remainingSeconds;
+    private int TIME_LIMIT;
     DBM dbm;
     TextView tv_points;
     TextView tv_card_name;
     TextView tv_card_description;
     TextView tv_card_points;
+    TextView tv_time_remaining;
     ConstraintLayout cl_card;
     boolean card_finished = false;
     @Override
@@ -26,16 +33,44 @@ public class CardActivity extends AppCompatActivity {
         tv_card_name = findViewById(R.id.tv_card_name);
         tv_card_description = findViewById(R.id.tv_card_description);
         tv_card_points = findViewById(R.id.tv_card_points);
+        tv_time_remaining = findViewById(R.id.tv_time_remaining);
         cl_card = findViewById(R.id.cl_card);
+        TIME_LIMIT = PM.getTimer(this);
         changeCard();
     }
-    public void addTenPoints(View view){
-        PM.addPoints(this, 10);
-        String temp_string = getResources().getString(R.string.tv_points) + PM.getPoints(this);
-        tv_points.setText(temp_string);
+    private void startTimerTask() {// Jediná funkce zkopírovaná z ChatGPT
+        timer = new Timer();
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        // Update remaining time and display in TextView
+                        int minutes = remainingSeconds / 60;
+                        int seconds = remainingSeconds % 60;
+                        String remainingTime = String.format("%02d:%02d", minutes, seconds);
+                        tv_time_remaining.setText(getResources().getString(R.string.tv_time_remaining) + remainingTime);
+                        // Decrease remaining time by 1 second
+                        remainingSeconds--;
+                        // Stop timer if remaining time reaches 0
+                        if (remainingSeconds < 0) {
+                            timer.cancel(); // Stop the timer
+                            tv_time_remaining.setText(getResources().getString(R.string.tv_time_remaining) + "00:00");
+                            changeCard();
+                        }
+                    }
+                });
+            }
+        }, 0, 1000); // Execute every 1000 milliseconds (1 second)
     }
-    public void changeCardBtn(View view){
-        changeCard();
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (timer != null) {
+            timer.cancel();
+        }
     }
     public void changeCard(){
         if(card_finished){
@@ -44,10 +79,12 @@ public class CardActivity extends AppCompatActivity {
             tv_points.setText(temp_string);
         }
         setCardStateOff();
-        Card card = dbm.getRandomCard();
+        Card card = dbm.getRandomCard(this);
         tv_card_name.setText(card.title);
         tv_card_description.setText(card.description);
         tv_card_points.setText(Integer.toString(card.points));
+        remainingSeconds = TIME_LIMIT;
+        startTimerTask();
     }
     public void setCardStateOn(){
         cl_card.setBackground(getDrawable(R.drawable.card_border_on));

@@ -17,68 +17,57 @@
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent" />
 
-  <Button
-      android:id="@+id/btn_add_ten_points"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:onClick="addTenPoints"
-      android:text="add 10 points"
-      app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/tv_points" />
-
-  <androidx.constraintlayout.widget.ConstraintLayout
-      android:id="@+id/cl_card"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:background="@drawable/card_border_off"
-      android:padding="10dp"
-      android:onClick="switchCardState"
-      app:layout_constraintBottom_toTopOf="@+id/btn_add_ten_points"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/tv_points">
-
-      <TextView
-          android:id="@+id/tv_card_name"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="error"
-          android:textSize="20sp"
-          app:layout_constraintEnd_toEndOf="parent"
-          app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toTopOf="parent" />
-
-      <TextView
-          android:id="@+id/tv_card_description"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="error"
-          android:textSize="16sp"
-          app:layout_constraintEnd_toEndOf="parent"
-          app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toBottomOf="@+id/tv_card_name" />
-
-      <TextView
-          android:id="@+id/tv_card_points"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="0"
-          android:textSize="20sp"
-          app:layout_constraintEnd_toEndOf="parent"
-          app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toBottomOf="@+id/tv_card_description" />
-
-  </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <Button
-        android:id="@+id/btn_randomize_card"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_card"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="randomize"
-        android:onClick="changeCardBtn"
-        app:layout_constraintBottom_toTopOf="@+id/btn_add_ten_points"
+        android:background="@drawable/card_border_off"
+        android:onClick="switchCardState"
+        android:padding="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_points">
+
+        <TextView
+            android:id="@+id/tv_card_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="error"
+            android:textSize="30sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_card_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="error"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_card_name" />
+
+        <TextView
+            android:id="@+id/tv_card_points"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="25sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_card_description" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/tv_time_remaining"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="error"
+        app:layout_constraintBottom_toTopOf="@+id/cl_card"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_points" />
 </androidx.constraintlayout.widget.ConstraintLayout>

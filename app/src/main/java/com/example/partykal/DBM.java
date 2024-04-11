@@ -90,15 +90,15 @@ public class DBM extends SQLiteOpenHelper {
         }
         return result;
     }
-    public Card getRandomCard(){
+    public Card getRandomCard(Context context){
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(
                 "SELECT * FROM " +
                 CARD_TABLE_NAME,
                 null);
-        if(cursor != null){
-            if(cursor.getCount() > 0){
-                int randomInt = (int)(Math.random() * cursor.getCount());
+        if(cursor != null) {
+            if (cursor.getCount() > 0) {
+                int randomInt = (int) (Math.random() * cursor.getCount());
                 cursor.moveToPosition(randomInt);
                 int title_index = cursor.getColumnIndex("title");
                 int desc_index = cursor.getColumnIndex("description");
@@ -115,7 +115,7 @@ public class DBM extends SQLiteOpenHelper {
             }
             cursor.close();
         }
-        return new Card("error","something in function DBM.getRandomCard()",0);
+        return new Card("error", context.getResources().getString(R.string.description_no_cards_in_database),0);
     }
     public void clearAllCards(String password){
         SQLiteDatabase db = this.getWritableDatabase();

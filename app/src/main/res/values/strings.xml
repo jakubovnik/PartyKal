@@ -13,9 +13,13 @@
     <string name="toast_not_enough_cards">You do not have any cards!</string>
     <string name="btn_clear_all_cards">Clear All Cards</string>
     <string name="toast_enter_passcode">Enter \"confirm\" to the Card title area and press again</string>
-    <string name="toast_qr_exceeded" translatable="false">Exceeded qr code json limit</string>
+    <string name="toast_qr_exceeded">Exceeded qr code json limit</string>
     <string name="et_card_title">Card title / Search</string>
     <string name="et_card_description">Card description</string>
     <string name="et_card_points">Points</string>
     <string name="toast_edit_text_not_filled">All text areas need to be filled</string>
+    <string name="tv_time_remaining">"Time remaining: "</string>
+    <string name="tv_time_limit">Time Limit (in minutes):</string>
+    <string name="tv_last_score">"Last Score: "</string>
+    <string name="description_no_cards_in_database">There are no cards in the database</string>
 </resources>
