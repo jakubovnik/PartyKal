@@ -7,7 +7,7 @@ public class PM {// Preferences manager pro správu bodů a času
     private static final String PREF_NAME = "PartyKalPreferences";
     private static final String POINTS_KEY = "points";
     private static final String TIME_KEY = "time_limit";
-    public static final int DEFAULT_TIME_LIMIT = 20 * 60;
+    public static final int DEFAULT_TIME_LIMIT = 20 * 60; //čas v sekundách
     private PM(){}
     private static SharedPreferences getSP(Context context){
         return context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);

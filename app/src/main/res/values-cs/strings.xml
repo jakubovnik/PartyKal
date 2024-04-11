@@ -21,4 +21,5 @@
     <string name="tv_time_limit">Časový limit (v minutách):</string>
     <string name="tv_last_score">"Skóre z poslední hry: "</string>
     <string name="description_no_cards_in_database">V databázi nejsou žádné karty</string>
+    <string name="toast_some_cards_skipped">Některé karty byly přeskočeny</string>
 </resources>

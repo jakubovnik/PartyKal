@@ -103,6 +103,7 @@ public class CardTestActivity extends AppCompatActivity { // Místo pro editová
         intentIntegrator.initiateScan();
     }
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) { // většina zkopírována ze stránky: https://easyonecoder.com/android/basic/QRCodeScanner
+        boolean some_cards_skipped = false;
         IntentResult intentResult = IntentIntegrator.parseActivityResult(requestCode,resultCode,data);
         if(intentResult != null){
             String json = intentResult.getContents();
@@ -111,7 +112,16 @@ public class CardTestActivity extends AppCompatActivity { // Místo pro editová
                 Type cardListType = new TypeToken<ArrayList<Card>>(){}.getType(); //řádek zkopírován z chatGPT
                 ArrayList<Card> cards = gson.fromJson(json, cardListType);
                 for(Card card : cards){
-                    dbm.addCard(card);
+                    if(dbm.getSimilarCardTitle(card.title).equals(card.title)){// import karet (pokud karta už existuje, přeskočí se)
+                        some_cards_skipped = true;
+                    }else {
+                        dbm.addCard(card);
+                    }
+                }
+                if(some_cards_skipped){
+                    CharSequence text = getResources().getString(R.string.toast_some_cards_skipped);
+                    Toast toast = Toast.makeText(this, text, Toast.LENGTH_LONG);
+                    toast.show();
                 }
             }
         }else{
@@ -119,7 +129,7 @@ public class CardTestActivity extends AppCompatActivity { // Místo pro editová
         }
         refreshValues();
     }
-    public void exportCardsBtn(View view){
+    public void exportCardsBtn(View view){ //Zapne export karet
         if(dbm.getSimilarCardCount("")<1){
             CharSequence text = getResources().getString(R.string.toast_not_enough_cards);
             Toast toast = Toast.makeText(this, text, Toast.LENGTH_SHORT);

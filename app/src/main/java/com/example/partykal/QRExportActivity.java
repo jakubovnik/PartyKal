@@ -27,7 +27,7 @@ public class QRExportActivity extends AppCompatActivity {
         iv_qr_code = findViewById(R.id.iv_qr_code);
         generateQRCode();
     }
-    private void generateQRCode() {
+    private void generateQRCode() {//Vygeneruje JSON, který následně převede do QR kódu
         Cursor card_cursor = dbm.getCards();
         card_cursor.moveToFirst();
         ArrayList<Card> cards = new ArrayList<>();

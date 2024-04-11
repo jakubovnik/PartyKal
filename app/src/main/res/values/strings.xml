@@ -22,4 +22,5 @@
     <string name="tv_time_limit">Time Limit (in minutes):</string>
     <string name="tv_last_score">"Last Score: "</string>
     <string name="description_no_cards_in_database">There are no cards in the database</string>
+    <string name="toast_some_cards_skipped">Some cards were skipped</string>
 </resources>

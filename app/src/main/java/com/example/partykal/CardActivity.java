@@ -72,7 +72,7 @@ public class CardActivity extends AppCompatActivity {
             timer.cancel();
         }
     }
-    public void changeCard(){
+    public void changeCard(){ // vybere náhodnou kartu a přidá body (pokud je karta označená)
         if(card_finished){
             PM.addPoints(this, Integer.parseInt(tv_card_points.getText().toString()));
             String temp_string = getResources().getString(R.string.tv_points) + PM.getPoints(this);
@@ -94,7 +94,7 @@ public class CardActivity extends AppCompatActivity {
         cl_card.setBackground(getDrawable(R.drawable.card_border_off));
         card_finished = false;
     }
-    public void switchCardState(View view){
+    public void switchCardState(View view){ // přepne kartu na hotovou/nedokončenou
         if(!card_finished){
             setCardStateOn();
         }else{

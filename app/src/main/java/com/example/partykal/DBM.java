@@ -56,7 +56,7 @@ public class DBM extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         return db.rawQuery("SELECT * FROM "+ CARD_TABLE_NAME, null);
     }
-    public String getSimilarCardTitle(String title){
+    public String getSimilarCardTitle(String title){// Vrací podobný název karty
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM "+ CARD_TABLE_NAME +" WHERE title LIKE '%"+ title + "%';", null);
         String result;
@@ -73,7 +73,7 @@ public class DBM extends SQLiteOpenHelper {
         }
         return result;
     }
-    public int getSimilarCardCount(String title){
+    public int getSimilarCardCount(String title){// vrací počet karet s podobným názvem
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM "+ CARD_TABLE_NAME +" WHERE title LIKE '%"+ title + "%';", null);
         int result = 0;
@@ -90,7 +90,7 @@ public class DBM extends SQLiteOpenHelper {
         }
         return result;
     }
-    public Card getRandomCard(Context context){
+    public Card getRandomCard(Context context){// vrátí náhodnou kartu
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(
                 "SELECT * FROM " +
@@ -117,7 +117,7 @@ public class DBM extends SQLiteOpenHelper {
         }
         return new Card("error", context.getResources().getString(R.string.description_no_cards_in_database),0);
     }
-    public void clearAllCards(String password){
+    public void clearAllCards(String password){// Při správném vstupu vymaže všechny karty
         SQLiteDatabase db = this.getWritableDatabase();
         if(password.equals("confirm")){
             db.execSQL("DELETE FROM " + CARD_TABLE_NAME);
